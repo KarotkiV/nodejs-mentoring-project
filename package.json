@@ -1,0 +1,33 @@
+{
+  "name": "project",
+  "version": "1.0.0",
+  "description": "Mentoring program project",
+  "main": "app.js",
+  "scripts": {
+    "start": "babel ./app.js --out-file ./build/app.js && babel ./models/Product.js --out-file ./build/models/Product.js && babel ./models/User.js --out-file ./build/models/User.js && nodemon ./build/app.js",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KarotkiV/nodejs-mentoring-project.git"
+  },
+  "author": "Viachaslau Karotki",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KarotkiV/nodejs-mentoring-project/issues"
+  },
+  "homepage": "https://github.com/KarotkiV/nodejs-mentoring-project#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/preset-es2015": "^7.0.0-beta.53",
+    "@babel/preset-stage-2": "^7.0.0",
+    "@babel/register": "^7.0.0",
+    "babel-preset-es2015": "^6.24.1",
+    "nodemon": "^1.18.10"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.2.5"
+  }
+}
