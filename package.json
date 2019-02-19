@@ -4,7 +4,7 @@
   "description": "Mentoring program project",
   "main": "app.js",
   "scripts": {
-    "start": "babel ./app.js --out-file ./build/app.js && babel ./models/Product.js --out-file ./build/models/Product.js && babel ./models/User.js --out-file ./build/models/User.js && nodemon ./build/app.js",
+    "start": "babel ./app.js --out-file ./build/app.js && babel ./models/Product.js --out-file ./build/models/Product.js && babel ./models/User.js --out-file ./build/models/User.js && babel ./models/index.js --out-file ./build/models/index.js && nodemon ./build/app.js",
     "test": "test"
   },
   "repository": {

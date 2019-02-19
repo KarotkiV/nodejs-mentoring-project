@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Product = void 0;
+exports.default = void 0;
 
 class Product {
   constructor() {
@@ -12,4 +12,5 @@ class Product {
 
 }
 
-exports.Product = Product;
+var _default = Product;
+exports.default = _default;
