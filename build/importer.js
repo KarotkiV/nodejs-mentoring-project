@@ -19,11 +19,11 @@ class Importer {
   import(path) {
     return new Promise(function (resolve, reject) {
       fs.readdir(path, function (err, filenames) {
-        if (err) reject('error');
-        let res = [];
+        if (err) reject(err);
+        let res = '';
         filenames.forEach(function (filename) {
-          fs.readFile(`${path}\${filename}`, 'utf-8', function (err, data) {
-            console.log(data);
+          fs.readFile(`${path}\\${filename}`, 'utf-8', function (err, data) {
+            if (err) reject(err);
             res = res.concat(data);
           });
         });
@@ -32,11 +32,20 @@ class Importer {
     });
   }
 
+  import(path, filename) {
+    return new Promise(function (resolve, reject) {
+      fs.readFile(`${path}\\${filename}`, 'utf-8', function (err, data) {
+        if (err) reject(err);
+        resolve(data);
+      });
+    });
+  }
+
   importSync(path) {
     let res = [];
     fs.readdir(path, function (err, filenames) {
       filenames.forEach(function (filename) {
-        fs.readFile(`${path}\${filename}`, 'utf-8', function (err, data) {
+        fs.readFile(`${path}\\${filename}`, 'utf-8', function (err, data) {
           res = res.concat(data);
         });
       });
