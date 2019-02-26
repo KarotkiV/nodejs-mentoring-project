@@ -11,10 +11,12 @@ console.log(`Property name is ${properties.name}`);
 
 const importer = new Importer();
 const dirwatch = new DirWatch();
-dirwatch.watch('\data',2000,importer);
-
-//const importer = new Importer();
-//importer.import('\data').then(resolve);
+dirwatch.on('changed', function () {
+    console.log('Start event processing');
+    importer.import('data').then(res => console.log(res));
+        console.log('end event processing');
+});
+dirwatch.watch('data',2000);
 
 console.log("Ending ....");
 

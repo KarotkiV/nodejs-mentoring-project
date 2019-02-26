@@ -1,29 +1,25 @@
-import { resolve } from "dns";
-const EventEmitter = require('events');
+import { resolve } from 'dns';
+import {EventEmitter} from 'events';
+import * as fs from 'fs';
 
-class DirWatcher {
+const logging = (event,filename) => console.log('File was changed. Event: ' + event + ' Filename: ' + filename);
+
+class DirWatcher extends EventEmitter{
     constructor() {
+        super();
         console.log("DirWatcher module");
     }
 
-    watch(path,delay,importer) {
-        
-        const fs = require('fs');
+    watch(path,delay) {
 
         setTimeout(function(){
             fs.watch(path,function(event,filename){
+                this.on('changed',() => logging(event,filename));
                 if (event != null) {
-                    const emitter = new EventEmitter();
-                    const logging = () => {console.log('File was changed. Event: ' + event + ' Filename: ' + filename)};
-                    emitter.on('changed',logging);
-                    emitter.on('changed',() => {
-                        importer.import(path).then(resolve);
-                    });
-                    emitter.emit('changed');
+                    this.emit('changed');
                 }
             });
-        },delay);
-        
+        },delay);  
     }
 }
 
