@@ -5,8 +5,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _dns = require("dns");
-
 var _events = require("events");
 
 var fs = _interopRequireWildcard(require("fs"));
@@ -16,7 +14,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 class DirWatcher extends _events.EventEmitter {
   constructor() {
     super();
-    console.log("DirWatcher module");
+    console.log('DirWatcher module');
   }
 
   watch(path, delay) {
@@ -24,7 +22,7 @@ class DirWatcher extends _events.EventEmitter {
     setTimeout(function () {
       fs.watch(path, function (event, filename) {
         if (event != null) {
-          that.emit('changed', event, filename);
+          that.emit('dirwatcher:changed', event, filename);
         }
       });
     }, delay);

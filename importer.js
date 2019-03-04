@@ -1,34 +1,23 @@
 import * as fs from 'fs';
+import { promisify } from 'util';
+import { join } from 'path';
+
+const readFileP = promisify(fs.readFile);
+const readDirP = promisify(fs.readdir);
 
 class Importer {
     constructor() {
-        console.log("Importer module");
+        console.log('Importer module');
     }
 
-    import(path) {
-        return new Promise(function (resolve, reject) {
-            fs.readdir(path, function (err, filenames) {
-                if (err) reject(err);
-                let res = [];
-
-                filenames.forEach(function (filename) {
-                    fs.readFile(`${path}\\${filename}`, 'utf-8', function (err, data) {
-                        if (err) reject(err);
-                        res = res.concat(data);
-                    });
-                })
-                resolve(res);
-            });
+    importDir(path) {
+        return readDirP(path).then(filenames => {
+            return Promise.all(filenames.map(filename => readFileP(join(path, filename))));
         });
     }
 
-    import(path, filename) {
-        return new Promise(function (resolve, reject) {
-            fs.readFile(`${path}\\${filename}`, 'utf-8', function (err, data) {
-                if (err) reject(err);
-                resolve(data);
-            })
-        });
+    importFile(path, filename) {
+        return readFileP(join(path, filename));
     }
 
     importSync(path) {
