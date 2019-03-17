@@ -63,13 +63,13 @@ function convertToFile(pathFile) {
 function createBundle(path) {
     var resultData = [];
     var regex = new RegExp(extRegex('.css'));
-    var files = fs.readdirSync(path).filter(function (value) {return (regex.test(value) || value == 'bundle.css')});
+    var files = fs.readdirSync(path).filter(function (value) { return (regex.test(value) || value == 'bundle.css') });
     files.forEach(file => {
-        var data = fs.readFileSync(file,'utf-8');
+        var data = fs.readFileSync(file, 'utf-8');
         resultData = resultData.concat('\n').concat(data);
     });
 
-    if(fs.existsSync('bundle.css')) {
+    if (fs.existsSync('bundle.css')) {
         fs.appendFileSync('bundle.css', resultData.join(''));
     } else {
         fs.writeFileSync('bundle.css', resultData.join(''));

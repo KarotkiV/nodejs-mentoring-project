@@ -29,7 +29,10 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.2.5",
+    "body-parser": "^1.18.3",
     "commander": "^2.19.0",
+    "cookie-parser": "^1.4.4",
+    "express": "^4.16.4",
     "ext-to-regex": "^0.1.0"
   }
 }
